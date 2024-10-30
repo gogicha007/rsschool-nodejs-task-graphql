@@ -10,7 +10,7 @@ export const memberType = new GraphQLObjectType({
   })
 })
 
-const MemberTypeIdType = new GraphQLEnumType({
+export const MemberTypeIdType = new GraphQLEnumType({
     name: 'MemberTypeId',
     values: {
       basic: {
