@@ -361,20 +361,25 @@ const Mutations = new GraphQLObjectType({
         args: { userId: string; authorId: string },
         context: { prisma: PrismaClient },
       ) {
-        const { prisma } = context;
-        const result = await prisma.user.update({
-          where: {
-            id: args.userId,
-          },
-          data: {
-            userSubscribedTo: {
-              create: {
-                authorId: args.authorId,
+        try {
+          console.log(args.userId)
+          const { prisma } = context;
+          const result = await prisma.user.update({
+            where: {
+              id: args.userId,
+            },
+            data: {
+              userSubscribedTo: {
+                create: {
+                  authorId: args.authorId,
+                },
               },
             },
-          },
-        });
-        return result;
+          });
+          return result;
+        } catch {
+          return null;
+        }
       },
     },
     unsubscribeFrom: {
