@@ -1,8 +1,20 @@
 import { GraphQLObjectType, GraphQLList, GraphQLFloat, GraphQLString} from 'graphql';
 import { PrismaClient, User } from '@prisma/client';
 import { UUIDType } from './uuid.js';
-import { ProfileType } from './profile.js';
-import { PostType } from './post.js'; 
+import { ProfileType, IProfile } from './profile.js';
+import { IPost, PostType } from './post.js'; 
+
+interface ISubscription {
+  subscriberId: string;
+  authorId: string;
+};
+export interface IUser {
+  id: string;
+  name: string;
+  balance: number;
+  userSubscribedTo?: ISubscription[];
+  subscribedToUser?: ISubscription[];
+}
 
 export const UserType = new GraphQLObjectType({
   name: 'User',
