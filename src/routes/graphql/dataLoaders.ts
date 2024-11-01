@@ -7,11 +7,11 @@ import { MemberType } from '@prisma/client';
 import { MemberTypeId } from '../member-types/schemas.js';
 
 type Loaders = {
-  userById: DataLoader<string, IUser>;
-  postsByUserId: DataLoader<string, IPost[]>;
-  profileByUserId: DataLoader<string, IProfile>;
-  profilesByMemberTypeId: DataLoader<string, IProfile[]>;
-  memberTypeById: DataLoader<string, MemberType>;
+  userByIdLoader: DataLoader<string, IUser>;
+  postsByUserIdLoader: DataLoader<string, IPost[]>;
+  profileByUserIdLoader: DataLoader<string, IProfile>;
+  profilesByMemberTypeIdLoader: DataLoader<string, IProfile[]>;
+  memberTypeByIdLoader: DataLoader<string, MemberType>;
 };
 
 export const createDataLoaders = (prisma: PrismaClient): Loaders => {
@@ -100,10 +100,10 @@ export const createDataLoaders = (prisma: PrismaClient): Loaders => {
   };
 
   return {
-    userById: new DataLoader(getUserById),
-    postsByUserId: new DataLoader(getPostsByUserID),
-    profileByUserId: new DataLoader(getProfileByUserID),
-    profilesByMemberTypeId: new DataLoader(getProfilesByMemberID),
-    memberTypeById: new DataLoader(getMemberType),
+    userByIdLoader: new DataLoader(getUserById),
+    postsByUserIdLoader: new DataLoader(getPostsByUserID),
+    profileByUserIdLoader: new DataLoader(getProfileByUserID),
+    profilesByMemberTypeIdLoader: new DataLoader(getProfilesByMemberID),
+    memberTypeByIdLoader: new DataLoader(getMemberType),
   };
 };
